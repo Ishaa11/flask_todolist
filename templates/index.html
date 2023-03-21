@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Home{% endblock title %} 
+{% block body %}
+
+    
+    <div id="container">
+        <div id="centre" style="text-align: center; align-items: center;">
+            <form action="/" method="POST" style="padding-top: 22px;">
+                <label for="task-field" class="form__label"><strong>Add To Do</strong></label>
+                <input type="text" id="task-field" name="title">
+                <button class="btn" type="submit">Add Task</button>
+            </form>
+        </div>
+        
+        <div class="todo">
+            <h2 style="text-align: center;">YOUR TO DO TASKS</h2>
+
+            {% if allTodo|length == 0 %}
+
+                <div class="alert" role="alert">
+                    No Todos found. Add your first todo now!
+                </div>
+                {% else %} 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S No.</th>
+                            <th>Title</th>
+                            <th>Date Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for todo in allTodo %}
+                        <tr>
+                            <th>{{loop.index}}</th> <!--using jinja todo.sno krte lekin jb ek task delete hoga toh vo sno bhi absent hoga islie loop.index-->
+                            <td>{{todo.title}}</td>
+                            <td>{{todo.date_created}}</td>
+                            <td>
+                                <a href="/update/{{todo.sno}}" type="button" class="btns2" style="background-color: rgb(37, 189, 58); margin: 5px 0 7px 5px;" >Update</a>
+                                <a href="/delete/{{todo.sno}}" type="button" class="btns2" style="background-color: rgb(214, 36, 36); margin: 5px 5px 7px 0;">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                {% endif %}
+        </div>
+          
+    </div>
+    
+    {% endblock body %}

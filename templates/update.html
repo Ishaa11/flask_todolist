@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %} 
+{% block body %}
+
+    <div id="centre">
+        <h2>Update Todo</h2>
+        <form action="/update/{{todo.sno}}" method="POST">
+            <label for="title" class="form__label">Update Task</label>
+            <input type="text" id="title" name="title" id="title" value="{{todo.title}}" aria-describedby="emailHelp">
+            <button class="btn" type="submit">Update</button>
+        </form>
+    </div>
+    
+   
+
+{% endblock body %}
